@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
 
     // Fungsi [Range (min, max)] ialah menjaga value agar tetap berada di antara min dan max-nya
     [Range (0f, 1f)] public float AutoCollectPercentage = 0.1f;
-    public float SaveDelay = 5f;
+    
+    //public float SaveDelay = 5f;
 
     public ResourceConfig[] ResourcesConfigs;
     public Sprite[] ResourcesSprites;
@@ -141,12 +142,14 @@ public class GameManager : MonoBehaviour
         UserDataManager.Progress.Gold += value;
         GoldInfo.text = $"Gold: { UserDataManager.Progress.Gold.ToString ("0") }";
 
+        UserDataManager.Save();
+        /* cloud save
         UserDataManager.Save(_saveDelayCounter < 0f);
 
         if (_saveDelayCounter < 0f)
         {
             _saveDelayCounter = SaveDelay;
-        }
+        }*/
     }
 
     public void CollectByTap (Vector3 tapPosition, Transform parent)
